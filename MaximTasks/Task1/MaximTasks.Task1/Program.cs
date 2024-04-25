@@ -6,7 +6,7 @@ namespace MaximTasks.Task1
     {
         static void Main(string[] args)
         {
-            var result = StringUtilities.Transform("abcdef");
+            var result = StringUtilities.Transform("AbDe1");
             Console.WriteLine(result);
         }
     }
