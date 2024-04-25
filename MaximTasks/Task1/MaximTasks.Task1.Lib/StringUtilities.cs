@@ -12,9 +12,34 @@
         /// строку и к ней добавляет изначальную строку.
         /// </summary>
         /// <param name="str">Входная строка.</param>
-        /// <returns>Возвращает обработанную строку.</returns>
+        /// <returns>
+        /// Возвращает обработанную строку сообщение о том, что были введены не
+        /// подходящие символы.
+        /// </returns>
         public static string Transform(string str)
         {
+            string notSuitableChars = "";
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] < '\u0061' || str[i] > '\u007A')
+                {
+                    if (notSuitableChars.Length == 0)
+                    {
+                        notSuitableChars += str[i];
+                    }
+                    else
+                    {
+                        notSuitableChars += $", {str[i]}";
+                    }
+                }
+            }
+
+            if (notSuitableChars.Length != 0)
+            {
+                return "Были введены не подходящие символы: " + notSuitableChars;
+            }
+            
+
             if (str.Length % 2 == 0)
             {
                 var middleStr = str.Length / 2;
