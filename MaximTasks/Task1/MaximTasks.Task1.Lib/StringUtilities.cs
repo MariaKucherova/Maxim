@@ -56,5 +56,30 @@
                 return reversedStr + str;
             }
         }
+        
+        /// <summary>
+        /// Вычисляет сколько раз встречается символ в строке.
+        /// </summary>
+        /// <param name="str">Входная строка.</param>
+        /// <returns>
+        /// Возвращает словарь, содержащий символы строки и количествоих вхождений.
+        /// </returns>
+        public static Dictionary<char, int> CalculateNumberChar(string str)
+        {
+            var chars = new Dictionary<char, int>();
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (!chars.ContainsKey(str[i]))
+                {
+                    chars.Add(str[i], 1);
+                }
+                else
+                {
+                    ++chars[str[i]];
+                }
+            }
+
+            return chars;
+        }
     }
 }
