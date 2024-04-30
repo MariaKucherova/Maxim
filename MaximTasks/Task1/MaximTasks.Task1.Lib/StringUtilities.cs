@@ -81,5 +81,32 @@
 
             return chars;
         }
+
+        /// <summary>
+        /// Находит в строке наибольшую подстроку, которая начинается и заканчивается
+        /// на гласную букву из «aeiouy».
+        /// </summary>
+        /// <param name="str">Входная строка.</param>
+        /// <returns>
+        /// Возвращает самую длинную подстроку начинающуеся и заканчивающуеся
+        /// на гласную букву из «aeiouy» или пустую строку, если такая подстрока
+        /// не найдена.
+        /// </returns>
+        public static string GetLongestSubstringVowel(string str)
+        {
+            var vowels = new char[] { 'a', 'e', 'i', 'o', 'u', 'y' };
+
+            var firstVowel = str.IndexOfAny(vowels);
+            var lastVowel = str.LastIndexOfAny(vowels);
+
+            if (firstVowel != -1 && lastVowel != -1)
+            {
+                return str.Substring(firstVowel, lastVowel - firstVowel + 1);
+            }
+            else
+            {
+                return "";
+            }
+        }
     }
 }

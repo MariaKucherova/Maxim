@@ -17,6 +17,13 @@ namespace MaximTasks.Task1
             {
                 Console.WriteLine($"Символ {c.Key} встречается в строке {c.Value} раз.");
             }
+
+            var substring = StringUtilities.GetLongestSubstringVowel(result);
+            if (substring != string.Empty)
+            {
+                Console.WriteLine($"Самая длинная подстрока начинающаяся и заканчивающаяся" +
+                                  $" на гласную букву из «aeiouy»: {substring}");
+            }
         }
     }
 }
