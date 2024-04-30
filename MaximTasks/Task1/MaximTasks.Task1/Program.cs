@@ -12,7 +12,7 @@ namespace MaximTasks.Task1
             var result = StringUtilities.Transform(input);
             Console.WriteLine(result);
 
-            var chars = StringUtilities.CalculateNumberChar(input);
+            var chars = StringUtilities.CalculateNumberChar(result);
             foreach (var c in chars)
             {
                 Console.WriteLine($"Символ {c.Key} встречается в строке {c.Value} раз.");
