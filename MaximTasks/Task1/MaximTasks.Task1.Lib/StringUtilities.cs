@@ -27,7 +27,7 @@
                     {
                         notSuitableChars += str[i];
                     }
-                    else
+                    else if (!notSuitableChars.Contains(str[i]))
                     {
                         notSuitableChars += $", {str[i]}";
                     }
