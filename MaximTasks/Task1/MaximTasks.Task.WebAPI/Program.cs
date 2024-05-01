@@ -29,8 +29,17 @@ namespace MaximTasks.Task.WebAPI
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task API V1");
             });
 
-            app.MapGet("/string/{input}/{sorting}", async (string input, int sorting) =>
+            app.MapGet("/string/{input}/{sorting}", async (string input, int sorting, IConfiguration appConfig) =>
             {
+                var blackList = appConfig.GetSection("Settings:BlackList").GetChildren();
+                foreach (var elem in blackList)
+                {
+                    if (input == elem.Value)
+                    {
+                        return Results.BadRequest(new { message = "Cтрока находится в черном списке" });
+                    }
+                }
+
                 var result = StringUtilities.Transform(input);
 
                 if (result.Contains("Были введены не подходящие символы:") || result == string.Empty)
@@ -61,8 +70,9 @@ namespace MaximTasks.Task.WebAPI
 
 
                 var max = result.Length - 1;
-                var requestUri = $"http://www.randomnumberapi.com/api/v1.0/random?min=0&max={max}&count=1";
-                using HttpResponseMessage response = await httpClient.GetAsync(requestUri);
+                var requestUriBegin = appConfig["RandomApi:Begin"];
+                var requestUriEnd = appConfig["RandomApi:End"];
+                using HttpResponseMessage response = await httpClient.GetAsync(requestUriBegin + max + requestUriEnd);
 
                 int randomNumber;
 
