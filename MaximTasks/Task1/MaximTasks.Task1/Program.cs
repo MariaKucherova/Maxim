@@ -4,7 +4,9 @@ namespace MaximTasks.Task1
 {
     internal class Program
     {
-        static void Main(string[] args)
+        static HttpClient httpClient = new HttpClient();
+
+        static async Task Main(string[] args)
         {
             Console.WriteLine("Введите строку:");
             string? input = Console.ReadLine();
@@ -12,7 +14,7 @@ namespace MaximTasks.Task1
             var result = StringUtilities.Transform(input);
             Console.WriteLine(result);
 
-            if (!result.Contains("Были введены не подходящие символы:"))
+            if (!result.Contains("Были введены не подходящие символы:") && result != string.Empty)
             {
                 var chars = StringUtilities.CalculateNumberChar(result);
                 foreach (var c in chars)
@@ -53,6 +55,26 @@ namespace MaximTasks.Task1
                         break;
                     }
                 }
+
+                var max = result.Length - 1;
+                var requestUri = $"http://www.randomnumberapi.com/api/v1.0/random?min=0&max={max}&count=1";
+                using HttpResponseMessage response = await httpClient.GetAsync(requestUri);
+
+                int randomNumber;
+
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                {
+                    var random = new Random();
+                    randomNumber = random.Next(0, max);
+                }
+                else
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    randomNumber = int.Parse(content.Substring(1, content.Length - 3));
+                }
+                
+                result = result.Remove(randomNumber, 1);
+                Console.WriteLine($"Обработанная строка с удаленным символом с индексом {randomNumber} - {result}");
             }
         }
     }
