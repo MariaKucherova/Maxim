@@ -1,7 +1,7 @@
 using MaximTasks.Task1.Lib;
 using Microsoft.OpenApi.Models;
 
-namespace MaximTasks.Task.WebAPI
+namespace MaximTasks.Task1.WebAPI
 {
     public class Program
     {
@@ -28,6 +28,8 @@ namespace MaximTasks.Task.WebAPI
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Task API V1");
             });
+
+            app.UseMiddleware<ParallelLimitMiddleware>();
 
             app.MapGet("/string/{input}/{sorting}", async (string input, int sorting, IConfiguration appConfig) =>
             {
