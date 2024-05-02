@@ -1,4 +1,4 @@
-﻿namespace MaximTasks.Task.WebAPI
+﻿namespace MaximTasks.Task1.WebAPI
 {
     /// <summary>
     /// Тело ответа.

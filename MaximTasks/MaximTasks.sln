@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaximTasks.Task1", "Task1\M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaximTasks.Task1.Lib", "Task1\MaximTasks.Task1.Lib\MaximTasks.Task1.Lib.csproj", "{DE442BD7-7D79-4DF1-AB70-DF3C2C58B1A3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaximTasks.Task.WebAPI", "Task1\MaximTasks.Task.WebAPI\MaximTasks.Task.WebAPI.csproj", "{2605D262-2897-4385-8DDA-A038A0F042B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MaximTasks.Task1.WebAPI", "Task1\MaximTasks.Task.WebAPI\MaximTasks.Task1.WebAPI.csproj", "{2605D262-2897-4385-8DDA-A038A0F042B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
